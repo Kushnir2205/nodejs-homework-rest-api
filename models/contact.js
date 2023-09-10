@@ -22,6 +22,11 @@ const contactSchema = new Schema(
       type: Boolean,
       default: false,
     },
+    owner: {
+      type: Schema.Types.ObjectId,
+      ref: "user",
+      require: true,
+    },
   },
   { versionKey: false, timestamps: true }
 );
@@ -34,6 +39,7 @@ const addSchema = Joi.object({
   phone: Joi.string().pattern(numberPattern).required(),
   favorite: Joi.boolean(),
 });
+
 const updateByFavoriteSchema = Joi.object({
   favorite: Joi.boolean().required(),
 });
